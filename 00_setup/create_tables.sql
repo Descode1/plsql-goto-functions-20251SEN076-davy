@@ -1,22 +1,5 @@
 SET SERVEROUTPUT ON;
 
--- Clean up old objects so this setup can be rerun safely.
-BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE employees CASCADE CONSTRAINTS';
-EXCEPTION
-    WHEN OTHERS THEN
-        IF SQLCODE != -942 THEN RAISE; END IF;
-END;
-/
-
-BEGIN
-    EXECUTE IMMEDIATE 'DROP TABLE departments CASCADE CONSTRAINTS';
-EXCEPTION
-    WHEN OTHERS THEN
-        IF SQLCODE != -942 THEN RAISE; END IF;
-END;
-/
-
 CREATE TABLE departments (
     department_id   NUMBER PRIMARY KEY,
     department_name VARCHAR2(100) NOT NULL UNIQUE
